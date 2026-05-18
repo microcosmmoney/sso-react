@@ -27,3 +27,10 @@ export { SsoProjectsBanner } from './components/sso-projects-banner';
 export type { SsoProjectsBannerProps, SsoBannerVariant } from './components/sso-projects-banner';
 export { SsoAlreadyRegisteredAlert } from './components/sso-already-registered-alert';
 export type { SsoAlreadyRegisteredAlertProps } from './components/sso-already-registered-alert';
+export { SsoSimpleNotice } from './components/sso-simple-notice';
+export type { SsoSimpleNoticeProps } from './components/sso-simple-notice';
+export { SsoAlreadyRegisteredHint } from './components/sso-already-registered-hint';
+export type {
+  SsoAlreadyRegisteredHintProps,
+  SsoAlreadyRegisteredHintLinkProps,
+} from './components/sso-already-registered-hint';
