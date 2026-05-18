@@ -32,17 +32,19 @@ export function useExistingProjects(
   useEffect(() => {
     const trimmed = (email || '').trim().toLowerCase();
     if (!trimmed || trimmed.length < minEmailLength || !trimmed.includes('@')) {
+      if (abortRef.current) abortRef.current.abort();
       setLoading(false);
       setExists(false);
       setCodes([]);
       return;
     }
 
+    setLoading(true);
+
     const handle = setTimeout(() => {
       if (abortRef.current) abortRef.current.abort();
       const ctrl = new AbortController();
       abortRef.current = ctrl;
-      setLoading(true);
       checkEmail(trimmed, { endpoint, signal: ctrl.signal })
         .then((res) => {
           if (ctrl.signal.aborted) return;
@@ -54,8 +56,16 @@ export function useExistingProjects(
         });
     }, debounceMs);
 
-    return () => clearTimeout(handle);
+    return () => {
+      clearTimeout(handle);
+    };
   }, [email, endpoint, debounceMs, minEmailLength, bump]);
+
+  useEffect(() => {
+    return () => {
+      if (abortRef.current) abortRef.current.abort();
+    };
+  }, []);
 
   const projects: SsoProject[] = [];
   const unknown: string[] = [];

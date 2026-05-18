@@ -7,7 +7,7 @@ import type { SsoProject } from '../lib/types';
 export interface SsoAlreadyRegisteredAlertProps {
   email: string;
   currentProject?: string;
-  loginUrl?: string;
+  loginUrl?: string | ((project: SsoProject) => string);
   endpoint?: string;
   registryUrl?: string;
   staticOnly?: boolean;
@@ -73,7 +73,15 @@ export function SsoAlreadyRegisteredAlert({
       onLoginClick(p);
       return;
     }
-    const target = loginUrl || `${p.homepage}/login?email=${encodeURIComponent(email)}`;
+    const base = p.homepage.replace(/\/+$/, '');
+    let target: string;
+    if (typeof loginUrl === 'function') {
+      target = loginUrl(p);
+    } else if (typeof loginUrl === 'string' && loginUrl.length > 0) {
+      target = loginUrl;
+    } else {
+      target = `${base}/login?email=${encodeURIComponent(email)}`;
+    }
     if (typeof window !== 'undefined') {
       window.open(target, '_blank', 'noopener,noreferrer');
     }
