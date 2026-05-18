@@ -3,7 +3,9 @@ import type { SsoProject } from '../lib/types';
 
 export interface SsoProjectTileProps {
   project: SsoProject;
+  height?: number;
   size?: number;
+  maxWidth?: number;
   showName?: boolean;
   showDescription?: boolean;
   asLink?: boolean;
@@ -13,14 +15,17 @@ export interface SsoProjectTileProps {
 
 export function SsoProjectTile({
   project,
-  size = 32,
-  showName = true,
+  height,
+  size,
+  maxWidth = 160,
+  showName = false,
   showDescription = false,
   asLink = true,
   className = '',
   onClick,
 }: SsoProjectTileProps): React.ReactElement {
   const [imgError, setImgError] = React.useState(false);
+  const h = height ?? size ?? 32;
 
   const inner = (
     <span
@@ -41,13 +46,13 @@ export function SsoProjectTile({
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: size,
-            height: size,
-            borderRadius: size / 4,
+            width: h,
+            height: h,
+            borderRadius: h / 4,
             background: project.accentColor,
             color: '#fff',
             fontWeight: 600,
-            fontSize: Math.max(10, size * 0.45),
+            fontSize: Math.max(10, h * 0.45),
             flex: '0 0 auto',
           }}
         >
@@ -57,15 +62,13 @@ export function SsoProjectTile({
         <img
           src={project.logoUrl}
           alt={project.name}
-          width={size}
-          height={size}
           loading="lazy"
           onError={() => setImgError(true)}
           style={{
-            width: size,
-            height: size,
-            borderRadius: size / 6,
-            objectFit: 'cover',
+            height: h,
+            width: 'auto',
+            maxWidth: maxWidth,
+            objectFit: 'contain',
             display: 'block',
             flex: '0 0 auto',
           }}
@@ -74,14 +77,14 @@ export function SsoProjectTile({
       {(showName || showDescription) && (
         <span style={{ display: 'inline-flex', flexDirection: 'column', minWidth: 0 }}>
           {showName && (
-            <span style={{ fontWeight: 500, fontSize: Math.max(12, size * 0.4), whiteSpace: 'nowrap' }}>
+            <span style={{ fontWeight: 500, fontSize: Math.max(12, h * 0.4), whiteSpace: 'nowrap' }}>
               {project.name}
             </span>
           )}
           {showDescription && project.description && (
             <span
               style={{
-                fontSize: Math.max(10, size * 0.32),
+                fontSize: Math.max(10, h * 0.32),
                 opacity: 0.7,
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
@@ -102,6 +105,7 @@ export function SsoProjectTile({
         role={onClick ? 'button' : undefined}
         onClick={onClick ? () => onClick(project) : undefined}
         style={{ cursor: onClick ? 'pointer' : 'default' }}
+        title={project.name}
       >
         {inner}
       </span>
@@ -115,7 +119,7 @@ export function SsoProjectTile({
       rel="noopener noreferrer"
       onClick={onClick ? (e) => { e.preventDefault(); onClick(project); } : undefined}
       style={{ textDecoration: 'none', color: 'inherit' }}
-      title={project.description || project.name}
+      title={project.name}
     >
       {inner}
     </a>

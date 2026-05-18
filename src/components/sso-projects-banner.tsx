@@ -11,7 +11,9 @@ export interface SsoProjectsBannerProps {
   excludeSelf?: boolean;
   registryUrl?: string;
   staticOnly?: boolean;
+  tileHeight?: number;
   tileSize?: number;
+  tileMaxWidth?: number;
   showNames?: boolean;
   serviceLabel?: string;
   serviceLabelHref?: string;
@@ -26,8 +28,10 @@ export function SsoProjectsBanner({
   excludeSelf = true,
   registryUrl,
   staticOnly = false,
+  tileHeight,
   tileSize,
-  showNames,
+  tileMaxWidth = 160,
+  showNames = false,
   serviceLabel,
   serviceLabelHref = 'https://microcosm.money',
   className = '',
@@ -45,8 +49,7 @@ export function SsoProjectsBanner({
   if (projects.length === 0) return null;
 
   const label = serviceLabel ?? `\u672c\u7ad9\u652f\u6301 ${registry.serviceName}`;
-  const resolvedSize = tileSize ?? (variant === 'card' ? 40 : variant === 'compact' ? 24 : 32);
-  const resolvedShowNames = showNames ?? variant !== 'compact';
+  const resolvedHeight = tileHeight ?? tileSize ?? (variant === 'card' ? 40 : variant === 'compact' ? 24 : 32);
 
   const wrapperStyle: React.CSSProperties = {
     display: 'flex',
@@ -95,8 +98,9 @@ export function SsoProjectsBanner({
           <SsoProjectTile
             key={p.code}
             project={p}
-            size={resolvedSize}
-            showName={resolvedShowNames}
+            height={resolvedHeight}
+            maxWidth={tileMaxWidth}
+            showName={showNames}
             asLink
             onClick={onProjectClick}
           />
