@@ -53,7 +53,7 @@ export function SsoAlreadyRegisteredHint({
     <div className={className} data-microcosm-sso-already-registered-hint>
       {icon} \u6b64\u90ae\u7bb1\u53ef\u80fd\u5df2\u5728\u5176\u4ed6\u63a5\u5165 {serviceName} \u7684\u9879\u76ee\u6ce8\u518c\u8fc7, \u53ef
       {renderLink(loginLabel)}
-      , \u65e0\u9700\u91cd\u590d\u6ce8\u518c\u3002
+      , \u65e0\u9700\u91cd\u590d\u6ce8\u518c。
     </div>
   );
 }

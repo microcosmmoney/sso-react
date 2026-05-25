@@ -72,6 +72,19 @@ export const SSO_PROJECTS: SsoProject[] = [
     ssoMode: 'native',
     description: '\u63a8\u7279\u4ed8\u8d39\u8ba2\u9605\u5899\u670d\u52a1',
   },
+  {
+    code: 'bluv',
+    name: 'BluvDog',
+    nameZh: 'BluvDog',
+    homepage: 'https://bluv.dog',
+    logoUrl: 'https://bluv.dog/email-logo.png',
+    letter: 'B',
+    accentColor: '#7c3aed',
+    openRegister: true,
+    ssoEnabled: true,
+    ssoMode: 'native',
+    description: 'BluvDog \u9879\u76ee\u4e3b\u7ad9',
+  },
 ];
 
 export function findProject(code: string, registry: SsoProject[] = SSO_PROJECTS): SsoProject | undefined {
