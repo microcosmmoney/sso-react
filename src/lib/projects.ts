@@ -74,16 +74,16 @@ export const SSO_PROJECTS: SsoProject[] = [
   },
   {
     code: 'bluv',
-    name: 'BluvDog',
-    nameZh: 'BluvDog',
+    name: 'Bluv.Dog',
+    nameZh: '\u84ddV\u72d7',
     homepage: 'https://bluv.dog',
     logoUrl: 'https://bluv.dog/email-logo.png',
     letter: 'B',
-    accentColor: '#7c3aed',
+    accentColor: '#1DA1F2',
     openRegister: true,
     ssoEnabled: true,
     ssoMode: 'native',
-    description: 'BluvDog \u9879\u76ee\u4e3b\u7ad9',
+    description: 'Bark Without the Badge',
   },
 ];
 
