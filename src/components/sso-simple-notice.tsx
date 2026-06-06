@@ -33,7 +33,7 @@ export function SsoSimpleNotice({
   excludeSelf = true,
   serviceName,
   intro,
-  separator = '·',
+  separator = '\u00b7',
   showServiceLink = false,
   serviceHomepage,
   registryUrl,
@@ -77,7 +77,7 @@ export function SsoSimpleNotice({
       intro
     ) : (
       <>
-        \u672c\u7ad9\u4f7f\u7528 {serviceNameNode} · \u4ee5\u4e0b\u4efb\u4e00\u9879\u76ee\u5df2\u6ce8\u518c\u53ef\u76f4\u63a5\u767b\u5f55
+        \u672c\u7ad9\u4f7f\u7528 {serviceNameNode} \u00b7 \u4ee5\u4e0b\u4efb\u4e00\u9879\u76ee\u5df2\u6ce8\u518c\u53ef\u76f4\u63a5\u767b\u5f55
       </>
     );
 

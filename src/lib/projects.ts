@@ -18,7 +18,7 @@ export const SSO_PROJECTS: SsoProject[] = [
     openRegister: true,
     ssoEnabled: true,
     ssoMode: 'native+oauth',
-    description: 'Microcosm \u4e3b\u7ad9 — \u4e00\u8bc1\u901a\u8d26\u6237\u7cfb\u7edf\u7684\u5f52\u5c5e',
+    description: 'Microcosm \u4e3b\u7ad9 \u2014 \u4e00\u8bc1\u901a\u8d26\u6237\u7cfb\u7edf\u7684\u5f52\u5c5e',
   },
   {
     code: 'doublehelix',
@@ -84,6 +84,19 @@ export const SSO_PROJECTS: SsoProject[] = [
     ssoEnabled: true,
     ssoMode: 'native',
     description: 'Bark Without the Badge',
+  },
+  {
+    code: 'nineye',
+    name: 'Nineye',
+    nameZh: 'Nineye',
+    homepage: 'https://nineyes.cc',
+    logoUrl: 'https://microcosm.money/email-logo-nineye.png',
+    letter: 'N',
+    accentColor: '#6366F1',
+    openRegister: true,
+    ssoEnabled: true,
+    ssoMode: 'native',
+    description: 'Nineye \u5e73\u53f0',
   },
 ];
 
