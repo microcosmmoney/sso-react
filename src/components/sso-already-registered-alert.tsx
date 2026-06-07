@@ -4,6 +4,18 @@ import { useSsoRegistry } from '../hooks/use-sso-registry';
 import { SsoProjectTile } from './sso-project-tile';
 import type { SsoProject } from '../lib/types';
 
+function resolveSafeTarget(target: string, homepageBase: string, safeDefault: string): string {
+  try {
+    const homeOrigin = new URL(homepageBase).origin;
+    const resolved = new URL(target, homepageBase);
+    if (resolved.protocol !== 'https:' && resolved.protocol !== 'http:') return safeDefault;
+    if (resolved.origin !== homeOrigin) return safeDefault;
+    return resolved.toString();
+  } catch {
+    return safeDefault;
+  }
+}
+
 export interface SsoAlreadyRegisteredAlertProps {
   email: string;
   currentProject?: string;
@@ -74,16 +86,17 @@ export function SsoAlreadyRegisteredAlert({
       return;
     }
     const base = p.homepage.replace(/\/+$/, '');
+    const safeDefault = `${base}/login?email=${encodeURIComponent(email)}`;
     let target: string;
     if (typeof loginUrl === 'function') {
       target = loginUrl(p);
     } else if (typeof loginUrl === 'string' && loginUrl.length > 0) {
       target = loginUrl;
     } else {
-      target = `${base}/login?email=${encodeURIComponent(email)}`;
+      target = safeDefault;
     }
     if (typeof window !== 'undefined') {
-      window.open(target, '_blank', 'noopener,noreferrer');
+      window.open(resolveSafeTarget(target, base, safeDefault), '_blank', 'noopener,noreferrer');
     }
   };
 
