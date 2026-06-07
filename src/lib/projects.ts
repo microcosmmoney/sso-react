@@ -74,8 +74,8 @@ export const SSO_PROJECTS: SsoProject[] = [
   },
   {
     code: 'nineye',
-    name: 'Nineye',
-    nameZh: 'Nineye',
+    name: 'Nineyes',
+    nameZh: 'Nineyes',
     homepage: 'https://nineyes.cc',
     logoUrl: 'https://microcosm.money/email-logo-nineye.png',
     letter: 'N',
@@ -83,7 +83,7 @@ export const SSO_PROJECTS: SsoProject[] = [
     openRegister: true,
     ssoEnabled: true,
     ssoMode: 'native',
-    description: 'Nineye \u5e73\u53f0',
+    description: 'Nineyes \u9884\u6d4b\u5e02\u573a\u805a\u5408\u5e73\u53f0',
   },
 ];
 
