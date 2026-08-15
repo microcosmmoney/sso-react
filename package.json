@@ -1,7 +1,7 @@
 {
   "name": "@microcosmmoney/sso-react",
-  "version": "0.5.2",
-  "description": "Microcosm SSO (一证通) shared UI components, hooks, and project registry for sister projects",
+  "version": "0.6.0",
+  "description": "Microcosm SSO (\u4e00\u8bc1\u901a) shared UI components, hooks, and project registry for sister projects",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {

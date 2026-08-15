@@ -125,7 +125,7 @@ export function SsoAlreadyRegisteredAlert({
             }}
           >
             <SsoProjectTile project={p} height={24} maxWidth={120} showName asLink={false} />
-            <span style={{ opacity: 0.7, fontSize: 12 }}>{loginCtaLabel} \u2192</span>
+            <span style={{ opacity: 0.7, fontSize: 12 }}>{loginCtaLabel} →</span>
           </button>
         ))}
       </div>
